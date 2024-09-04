@@ -8666,7 +8666,8 @@ const globalExport = {};
             if (this.bgcanvas == this.canvas) {
                 this.drawBackCanvas();
             } else {
-                ctx.drawImage(this.bgcanvas, 0, 0);
+                let scale = window.devicePixelRatio;
+                ctx.drawImage(this.bgcanvas, 0, 0, this.bgcanvas.width / scale, this.bgcanvas.height / scale);
             }
 
             //rendering
@@ -9172,8 +9173,9 @@ const globalExport = {};
 
             //reset in case of error
             if (!this.viewport) {
+                let scale = window.devicePixelRatio;
                 ctx.restore();
-                ctx.setTransform(1, 0, 0, 1, 0, 0);
+                ctx.setTransform(scale, 0, 0, scale, 0, 0);
             }
             this.visible_links.length = 0;
 
